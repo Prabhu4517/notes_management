@@ -1,0 +1,36 @@
+body {
+    background-color: #f0f2f5;
+}
+
+.card {
+    border-radius: 10px;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+}
+
+.card h2 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.card-body {
+    padding: 25px;
+}
+
+.form-control {
+    margin-bottom: 20px;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.mt-3 {
+    margin-top: 1.5rem !important;
+}
+
+.shadow-sm {
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075) !important;
+}
