@@ -27,15 +27,21 @@ class SignUpView(CreateView):
         messages.success(self.request, "Account created successfully. You can now log in.")
         user = form.save()
         login(self.request, user)
-        return redirect('note_list')  
+        return redirect('login')  
 
 # Login and Logout Views - Public Access
 class CustomLoginView(LoginView):
     template_name = 'registration/login.html'
 
     def form_valid(self, form):
+        print("logged in ")
         messages.success(self.request, "Login successful!")
         return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        print(form.errors)
+        messages.error(self.request, "Login failed. Please check your username and password.")
+        return super().form_invalid(form)
 
 class CustomLogoutView(LogoutView):
     next_page = 'login'
@@ -88,10 +94,11 @@ class NoteUpdateView(CustomLoginRequiredMixin, UpdateView):
 # Note Delete View - Protected Access
 class NoteDeleteView(CustomLoginRequiredMixin, DeleteView):
     model = Note
-    template_name = 'notes/note_confirm_delete.html'
+    # template_name = 'notes/note_confirm_delete.html'
     success_url = reverse_lazy('note_list')
 
     def delete(self, request, *args, **kwargs):
+        print("Deleting note...")
         messages.success(self.request, "Note deleted successfully!")
         return super().delete(request, *args, **kwargs)
 
